@@ -31,7 +31,7 @@ public class Database {
 			System.out.println("Connexion à la BD réussi!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("BD non Trouvée!");
-		} catch (SQLException e) {//SI UNE REQUETE SQL NE PASSE PAS BIEN COMME IL FAUT 
+		} catch (SQLException e) {
 			System.out.println("Connexion à la BD échoué!:" + e.getMessage());
 		}
 
