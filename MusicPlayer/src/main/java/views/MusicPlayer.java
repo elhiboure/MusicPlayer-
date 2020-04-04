@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 
 public class MusicPlayer implements ActionListener {
-	JFrame frame; // Mon frame principal
-	JLabel songNameLabel = new JLabel(); // label Contenant le nom de la chanson 
+	JFrame frame; 
+	JLabel songNameLabel = new JLabel(); 
 	
 	JButton playButton = new JButton("Play");
 	JButton pauseButton = new JButton("Pause");
@@ -39,18 +39,17 @@ public class MusicPlayer implements ActionListener {
 	
 	
 	Playlist myPlayList = new Playlist();
-	Song song; 
 	
 	String filename;
 	String filePath;
 	
 	long totalLength;
-	long pause;
+	long pause;// pour reprendre 
 	
 	Player player;
 	Thread playThread;
 	Thread playotherThread;
-	Thread resumeThread;
+	Thread resumeThread;//reprendre 
 	Thread resumeOtherThread;
 	
 	JList<String> playlist = new JList<String>();
@@ -58,21 +57,21 @@ public class MusicPlayer implements ActionListener {
 	JScrollPane scrollpane = new JScrollPane();
 	File[] files;
 	ArrayList<File> mySongFiles = new ArrayList<File>();
-	ArrayList<File> mySongFiles2 = new ArrayList<File>();
+	
 	
 	ArrayList<Song> mySongs;
 	
 	JButton addToPlaylistButton = new JButton("Ajouter");
 	JButton removeFromPlaylistButton = new JButton("Supprimer");
 	
-	JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\Mohamed\\Desktop\\MusicPlayer\\ha.jpg"));
-		
+	JLabel imageLabel = new JLabel(new ImageIcon("..\\MusicPlayer\\img\\gramophone.jpg"));
+	
 
 	MusicPlayer() {
 		init();
 		prepareGUI();
 		addActionEvents();
-		playThread = new Thread(runnablePlay);
+		playThread = new Thread(runnablePlay); 
 		resumeThread = new Thread(runnableResume);
 		
 	}
@@ -152,7 +151,7 @@ public class MusicPlayer implements ActionListener {
 				updatePlaylist();
 
 			} else {
-				System.out.println("Dejà Premier élément!");
+				System.out.println("Dejà Premier morceau !");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,7 +171,7 @@ public class MusicPlayer implements ActionListener {
 				updatePlaylist();
 
 			} else {
-				System.out.println("Dejà Dernier élément!");
+				System.out.println("Dejà Dernier morceau !");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -227,12 +226,9 @@ public class MusicPlayer implements ActionListener {
 	
 		imageLabel.setBounds(500, -5, 725, 540);
 		frame.add(imageLabel);
-			
-
 	}
 
 	public void addActionEvents() {
-		// ajouter les actions Listners pour les composants
 		playButton.addActionListener(this);
 		pauseButton.addActionListener(this);
 		resumeButton.addActionListener(this);
@@ -255,16 +251,12 @@ public class MusicPlayer implements ActionListener {
 			if (fileChooser.showOpenDialog(addToPlaylistButton) == JFileChooser.APPROVE_OPTION) {
 				
 				// preparer la liste des fichier selectionnes
-				File[] myFiles = fileChooser.getSelectedFiles();
+				File[] myFiles = fileChooser.getSelectedFiles(); 
 				mySongFiles.addAll(Arrays.asList(myFiles));
 				
 				// creation de la PlayList
-				//myPlayList.createSongsList(mySongFiles,mySongs);
 				
 				mySongs.addAll( myPlayList.createSongsList(mySongFiles,mySongs));
-				
-				// pour garder la liste de tous les elements selectionnes
-				mySongFiles2.addAll(mySongFiles); 
 				
 				// pour ajouter juste les nouveaux selectionnes
 				mySongFiles.clear();
@@ -279,7 +271,7 @@ public class MusicPlayer implements ActionListener {
 			int indice = playlist.getSelectedIndex();
 			mySong = mySongs.get(indice);
 			myFile = (File) new File(mySong.getPath());
-			System.out.println(mySong.getNom());
+			System.out.println(mySong.getNom());//
 			
 			filename = mySong.getNom();
 			filePath = mySong.getPath();

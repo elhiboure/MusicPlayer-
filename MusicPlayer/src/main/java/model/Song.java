@@ -8,14 +8,14 @@ public class Song {
 	private int ordre;
 	private Playlist playlist;
 	
-	public Song(String nom, String path, int ordre, Playlist playlist) {//pour isert dans la basede donner car l id se fait automatiquement 
+	public Song(String nom, String path, int ordre, Playlist playlist) { 
 		this.nom = nom;
 		this.path = path;
 		this.ordre = ordre;
 		this.playlist = playlist;
 	}
 	
-	public Song(int id, String nom, String path, int ordre, Playlist playlist) {// c'est pour la requete select donc il faut l'id cree par la base de donnée 
+	public Song(int id, String nom, String path, int ordre, Playlist playlist) {
 		this.idSong = id;
 		this.nom = nom;
 		this.path = path;
